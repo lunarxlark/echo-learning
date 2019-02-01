@@ -30,7 +30,7 @@ list of echo's document
   - [ ] [Gzip](https://echo.labstack.com/middleware/gzip)
   - [ ] [JWT](https://echo.labstack.com/middleware/jwt)
   - [ ] [Key Auth](https://echo.labstack.com/middleware/key-auth)
-  - [ ] [Logger](https://echo.labstack.com/middleware/logger)
+  - [x] [Logger](https://echo.labstack.com/middleware/logger)
   - [ ] [Method Override](https://echo.labstack.com/middleware/method-override)
   - [ ] [Proxy](https://echo.labstack.com/middleware/proxy)
   - [ ] [Recover](https://echo.labstack.com/middleware/recover)
