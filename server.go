@@ -17,9 +17,9 @@ func main() {
 	// default
 	//e.Use(middleware.Logger())
 
-	// tlsv logformat
+	// ltsv logformat
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		Format:           tlsvLogFormat(),
+		Format:           ltsvLogFormat(),
 		CustomTimeFormat: "2006-01-02 15:04:05.00000",
 		Output:           os.Stdout,
 	}))
@@ -32,7 +32,7 @@ func main() {
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
-func tlsvLogFormat() string {
+func ltsvLogFormat() string {
 	var format string
 	//format += "time:${time_rfc3339}\t"
 	//format += "time:${time_unix}\t"
