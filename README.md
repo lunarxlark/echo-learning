@@ -7,7 +7,7 @@ This repository is for studying Golang framework `Echo`.
 list of echo's document
 
 - Guide
-  - [ ] [Installation](https://echo.labstack.com/guide/installation)
+  - [x] [Installation](https://echo.labstack.com/guide/installation)
   - [ ] [Customization](https://echo.labstack.com/guide/customization)
   - [ ] [Context](https://echo.labstack.com/guide/context)
   - [ ] [Cookies](https://echo.labstack.com/guide/cookies)
