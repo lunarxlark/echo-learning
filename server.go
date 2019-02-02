@@ -11,9 +11,16 @@ import (
 func main() {
 
 	e := echo.New()
+
+  // Routing
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
+  e.GET("/users/:id", getUser)
+  e.GET("/users/:region/:id", getUser)
+  //e.POST("/users", saveUser)
+  //e.PUT("/users/:id", updateUser)
+  //e.DELETE("/users/:id", deleteUesr)
 
 	// default
 	//e.Use(middleware.Logger())
@@ -29,6 +36,15 @@ func main() {
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
+
+func getUser(c echo.Context) error {
+  // User id from path `/users/:id`
+  region := c.Param("region")
+  id := c.Param("id")
+  return c.String(http.StatusOK, region + ":" + id)
+}
+
+
 
 func ltsvLogFormat() string {
 	var format string
