@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
@@ -17,17 +18,14 @@ func main() {
 	// default
 	//e.Use(middleware.Logger())
 
-	// ltsv logformat
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+  	// tsv logformat
+		//Format: tsvLogFormat(),
+	  // ltsv logformat
 		Format:           ltsvLogFormat(),
 		CustomTimeFormat: "2006-01-02 15:04:05.00000",
 		Output:           os.Stdout,
 	}))
-
-	// tsv logformat
-	//e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-	//	Format: tsvLogFormat(),
-	//}))
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
