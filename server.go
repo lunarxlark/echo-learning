@@ -12,7 +12,12 @@ func main() {
 
 	e := echo.New()
 
-  // Routing
+	// log
+	//file, err := os.OpenFile("access.log", os.O_WRONLY|os.O_CREATE, 0644)
+	file, err := os.OpenFile("log/access.log", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	if err != nil {
+		panic(err)
+	}
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
@@ -26,12 +31,13 @@ func main() {
 	//e.Use(middleware.Logger())
 
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-  	// tsv logformat
+		// tsv logformat
 		//Format: tsvLogFormat(),
-	  // ltsv logformat
+		// ltsv logformat
 		Format:           ltsvLogFormat(),
 		CustomTimeFormat: "2006-01-02 15:04:05.00000",
-		Output:           os.Stdout,
+		//Output:           os.Stdout,
+		Output: file,
 	}))
 
 	e.Logger.Fatal(e.Start(":1323"))
