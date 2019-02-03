@@ -14,7 +14,7 @@ func main() {
 
 	// log
 	//file, err := os.OpenFile("access.log", os.O_WRONLY|os.O_CREATE, 0644)
-	file, err := os.OpenFile("log/access.log", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	file, err := os.OpenFile("./log/access.log", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
 		panic(err)
 	}
