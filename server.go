@@ -18,6 +18,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	// Routing
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
@@ -26,6 +27,9 @@ func main() {
 	//e.PUT("/users/:id", updateUser)
 	//e.DELETE("/users/:id", deleteUesr)
 
+	// Path Parameters
+	e.GET("/users/:id", getUser)
+	e.GET("/users/:region/:id", getUser)
 	// default
 	//e.Use(middleware.Logger())
 
