@@ -18,14 +18,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	// Routing
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-  e.GET("/users/:id", getUser)
-  e.GET("/users/:region/:id", getUser)
-  //e.POST("/users", saveUser)
-  //e.PUT("/users/:id", updateUser)
-  //e.DELETE("/users/:id", deleteUesr)
+	//e.POST("/users", saveUser)
+	//e.PUT("/users/:id", updateUser)
+	//e.DELETE("/users/:id", deleteUesr)
 
 	// default
 	//e.Use(middleware.Logger())
