@@ -30,6 +30,10 @@ func main() {
 	// Path Parameters
 	e.GET("/users/:id", getUser)
 	e.GET("/users/:region/:id", getUser)
+
+	// Query Parameters
+	e.GET("/show", show)
+
 	// default
 	//e.Use(middleware.Logger())
 
@@ -47,13 +51,17 @@ func main() {
 }
 
 func getUser(c echo.Context) error {
-  // User id from path `/users/:id`
-  region := c.Param("region")
-  id := c.Param("id")
-  return c.String(http.StatusOK, region + ":" + id)
+	// User id from path `/users/:id`
+	region := c.Param("region")
+	id := c.Param("id")
+	return c.String(http.StatusOK, region+":"+id)
 }
 
-
+func show(c echo.Context) error {
+	team := c.QueryParam("team")
+	member := c.QueryParam("member")
+	return c.String(http.StatusOK, "team:"+team+", member:"+member)
+}
 
 func ltsvLogFormat() string {
 	var format string
