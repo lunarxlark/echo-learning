@@ -10,10 +10,6 @@ docker-compose up
 
 # stop ap
 docker-compose down
-
-# access to  ap
-curl http://localhost/
-> Helow World!
 ```
 
 ## TODO
