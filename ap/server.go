@@ -3,13 +3,26 @@ package main
 import (
 	"net/http"
 	"os"
+	"strconv"
 
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
 
+var db *gorm.DB
+var err error
+
+type user struct {
+	User_id      int    `json:"user_id"`
+	Name_first   string `json:"name_first"`
+	Name_familly string `json:"name_familly"`
+}
+
 func main() {
 
+	dbInit()
 	e := echo.New()
 
 	// log
@@ -23,38 +36,42 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-	//e.POST("/users", saveUser)
-	//e.PUT("/users/:id", updateUser)
-	//e.DELETE("/users/:id", deleteUesr)
 
 	// Path Parameters
-	e.GET("/users/:id", getUser)
-	e.GET("/users/:region/:id", getUser)
-
+	e.GET("/user/:id", getUser)
 	// Query Parameters
 	e.GET("/show", show)
 
 	// default
-	//e.Use(middleware.Logger())
-
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		// tsv logformat
-		//Format: tsvLogFormat(),
-		// ltsv logformat
 		Format:           ltsvLogFormat(),
 		CustomTimeFormat: "2006-01-02 15:04:05.00000",
-		//Output:           os.Stdout,
-		Output: file,
+		Output:           file,
 	}))
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
+func dbInit() {
+	connect := "eapp:password@tcp(db:3306)/esample"
+	db, err = gorm.Open("mysql", connect)
+	// defer db.Close()
+	if err != nil {
+		panic(err.Error())
+	}
+}
+
+func dbConnection() *gorm.DB {
+	return db
+}
+
 func getUser(c echo.Context) error {
-	// User id from path `/users/:id`
-	region := c.Param("region")
+	d := dbConnection()
 	id := c.Param("id")
-	return c.String(http.StatusOK, region+":"+id)
+	u := user{}
+	u.User_id, _ = strconv.Atoi(id)
+	d.First(&u)
+	return c.JSON(http.StatusOK, u)
 }
 
 func show(c echo.Context) error {
