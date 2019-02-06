@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS esample
+CHARACTER SET = utf8;
+
+USE esample;
+
