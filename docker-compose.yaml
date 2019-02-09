@@ -21,7 +21,9 @@ services:
     ports: 
       - "1323:1323"
     volumes:
-      - "./ap:/go/src/ap"
+      - "./ap/log:/work/log"
     depends_on:
       - db
-
+    command: 
+      - /work/server
+    restart: unless-stopped
