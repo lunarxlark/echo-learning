@@ -19,7 +19,7 @@ services:
     build: "./ap"
     container_name: "esample-ap"
     ports: 
-      - "80:1323"
+      - "1323:1323"
     volumes:
       - "./ap:/go/src/ap"
     depends_on:
