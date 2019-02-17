@@ -1,4 +1,4 @@
-# echo-study
+# echo-learning
 
 This repository is for studying Golang framework `Echo`.
 

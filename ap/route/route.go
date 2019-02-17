@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo"
-	"github.com/lunarxlark/echo-study/ap/db"
+	"github.com/lunarxlark/echo-learning/ap/db"
 )
 
 type user struct {

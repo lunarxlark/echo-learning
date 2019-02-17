@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/lunarxlark/echo-study/ap/db"
-	"github.com/lunarxlark/echo-study/ap/logger"
-	"github.com/lunarxlark/echo-study/ap/route"
+	"github.com/lunarxlark/echo-learning/ap/db"
+	"github.com/lunarxlark/echo-learning/ap/logger"
+	"github.com/lunarxlark/echo-learning/ap/route"
 
 	"github.com/labstack/echo/middleware"
 )
