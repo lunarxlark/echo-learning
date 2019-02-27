@@ -9,11 +9,12 @@ import (
 )
 
 type user struct {
-	User_id      int    `json:"user_id"`
-	Name_first   string `json:"name_first"`
-	Name_familly string `json:"name_familly"`
+	UserID      int    `json:"user_id"`
+	NameFirst   string `json:"name_first"`
+	NameFamilly string `json:"name_familly"`
 }
 
+// Init return Echo instance
 func Init() *echo.Echo {
 	e := echo.New()
 
@@ -31,10 +32,19 @@ func Init() *echo.Echo {
 
 func getUser(c echo.Context) error {
 	d := db.Conn()
-
 	id := c.Param("id")
 	u := user{}
-	u.User_id, _ = strconv.Atoi(id)
+	u.UserID, _ = strconv.Atoi(id)
+	d.First(&u)
+
+	return c.JSON(http.StatusOK, u)
+}
+
+func updateUser(c echo.Context) error {
+	d := db.Conn()
+	id := c.Param("id")
+	u := user{}
+	u.UserID, _ = strconv.Atoi(id)
 	d.First(&u)
 
 	return c.JSON(http.StatusOK, u)
