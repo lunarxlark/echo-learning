@@ -5,6 +5,8 @@ WORKDIR /go/src/github.com/lunarxlark/echo-learning/ap
 COPY . /go/src/github.com/lunarxlark/echo-learning/ap/
 #RUN go get -u github.com/golang/dep/...
 #RUN dep ensure
+RUN  apk add git
+ENV GO111MODULE on
 RUN go build -tags netgo -o server server.go
 # }}}
 
